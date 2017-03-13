@@ -30,13 +30,13 @@ const PCWSTR c_defaultResourceDictionary = L"\
     <FontWeight x:Key=\"TextWeight.Normal\">Normal</FontWeight> \
     <FontWeight x:Key=\"TextWeight.Bolder\">Bold</FontWeight> \
 \
-    <Style TargetType=\"TextBlock\" x:Key=\"TextBlock.Large\"> \
+    <Style TargetType=\"TextBlock\" x:Key=\"TextSize.Large\"> \
         <Setter Property=\"FontSize\" Value=\"24\"/> \
     </Style> \
-    <Style TargetType=\"TextBlock\" x:Key=\"TextBlock.Medium\"> \
+    <Style TargetType=\"TextBlock\" x:Key=\"TextSize.Medium\"> \
         <Setter Property=\"FontSize\" Value=\"18\"/> \
     </Style> \
-    <Style TargetType=\"TextBlock\" x:Key=\"TextBlock.Small\"> \
+    <Style TargetType=\"TextBlock\" x:Key=\"TextSize.Small\"> \
         <Setter Property=\"FontSize\" Value=\"12\"/> \
     </Style> \
 \
