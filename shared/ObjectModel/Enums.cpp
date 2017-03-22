@@ -40,6 +40,9 @@ static std::unordered_map<std::string, AdaptiveCardSchemaKey, CaseInsensitiveHas
     { "items", AdaptiveCardSchemaKey::Items },
     { "columns", AdaptiveCardSchemaKey::Columns },
     { "size", AdaptiveCardSchemaKey::Size },
+    { "facts", AdaptiveCardSchemaKey::Facts },
+    { "title", AdaptiveCardSchemaKey::Title },
+    { "value", AdaptiveCardSchemaKey::Value },
 };
 
 static std::unordered_map<AdaptiveCardSchemaKey, std::string> AdaptiveCardSchemaKeyEnumToName =
@@ -68,6 +71,9 @@ static std::unordered_map<AdaptiveCardSchemaKey, std::string> AdaptiveCardSchema
     { AdaptiveCardSchemaKey::Items, "items" },
     { AdaptiveCardSchemaKey::Columns, "columns" },
     { AdaptiveCardSchemaKey::Size, "size" },
+    { AdaptiveCardSchemaKey::Facts, "facts" },
+    { AdaptiveCardSchemaKey::Title, "title" },
+    { AdaptiveCardSchemaKey::Value, "value" },
 };
 
 static std::unordered_map<std::string, CardElementType, CaseInsensitiveHash, CaseInsensitiveEqualTo> CardElementTypeNameToEnum =
@@ -77,7 +83,8 @@ static std::unordered_map<std::string, CardElementType, CaseInsensitiveHash, Cas
     { "Image", CardElementType::Image },
     { "ColumnSet", CardElementType::ColumnSet },
     { "Column", CardElementType::Column },
-    //{ "FactSet", CardElementType::FactSet },
+    { "FactSet", CardElementType::FactSet },
+    { "Fact", CardElementType::Fact },
     //{ "ImageGallery", CardElementType::ImageGallery },
     //{ "ActionSet", CardElementType::ActionSet },
     { "Container", CardElementType::Container }
@@ -91,7 +98,8 @@ static std::unordered_map<CardElementType, std::string> CardElementTypeEnumToNam
     { CardElementType::Image, "Image" },
     { CardElementType::Column, "Column" },
     { CardElementType::ColumnSet, "ColumnSet"},
-    //{ CardElementType::FactSet, "FactSet" },
+    { CardElementType::FactSet, "FactSet" },
+    { CardElementType::Fact, "Fact" },
     //{ CardElementType::ImageGallery, "ImageGallery" },
     //{ CardElementType::ActionSet, "ActionSet" },
     { CardElementType::Container, "Container" }

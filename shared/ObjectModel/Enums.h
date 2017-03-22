@@ -28,7 +28,10 @@ enum class AdaptiveCardSchemaKey
     MaxLines,
     Items,
     Columns,
-    Size
+    Size,
+    Facts,
+    Title,
+    Value,
 };
 
 enum class TextSize
@@ -84,7 +87,8 @@ enum class CardElementType
     Container,
     Column,
     ColumnSet,
-    FactGroup,
+    FactSet,
+    Fact,
     ImageGallery,
     ActionGroup
 };

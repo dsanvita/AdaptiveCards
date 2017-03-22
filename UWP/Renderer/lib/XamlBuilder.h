@@ -61,6 +61,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** containerControl);
         void BuildColumnSet(
             _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
-            _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** containerControl);
+            _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** columnControl);
+        void BuildFactSet(
+            _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
+            _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** factSetControl);
     };
 }}

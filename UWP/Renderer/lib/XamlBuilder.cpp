@@ -490,4 +490,34 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
         THROW_IF_FAILED(xamlGrid.CopyTo(columnSetControl));
     }
+
+    _Use_decl_annotations_
+    void XamlBuilder::BuildFactSet(
+            IAdaptiveCardElement* adaptiveCardElement,
+            IUIElement** factSetControl)
+    {
+        ComPtr<IAdaptiveCardElement> cardElement(adaptiveCardElement);
+        ComPtr<IAdaptiveContainer> adaptiveContainer;
+        THROW_IF_FAILED(cardElement.As(&adaptiveContainer));
+
+        ComPtr<IStackPanel> xamlStackPanel = XamlHelpers::CreateXamlClass<IStackPanel>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_StackPanel));
+        xamlStackPanel->put_Orientation(Orientation::Orientation_Vertical);
+
+        ComPtr<IStyle> style;
+        std::wstring styleName = XamlStyleKeyGenerators::GenerateKeyForContainer(adaptiveContainer.Get());
+        if (SUCCEEDED(TryGetResoureFromResourceDictionaries<IStyle>(styleName, &style)))
+        {
+            ComPtr<IFrameworkElement> stackPanelAsFrameworkElement;
+            THROW_IF_FAILED(xamlStackPanel.As(&stackPanelAsFrameworkElement));
+            THROW_IF_FAILED(stackPanelAsFrameworkElement->put_Style(style.Get()));
+        }
+
+        ComPtr<IPanel> stackPanelAsPanel;
+        THROW_IF_FAILED(xamlStackPanel.As(&stackPanelAsPanel));
+        ComPtr<IVector<IAdaptiveCardElement*>> childItems;
+        THROW_IF_FAILED(adaptiveContainer->get_Items(&childItems));
+        BuildPanelChildren(childItems.Get(), stackPanelAsPanel.Get(), [](IUIElement*) {});
+
+        THROW_IF_FAILED(xamlStackPanel.CopyTo(containerControl));
+    }
 }}
