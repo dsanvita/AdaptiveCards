@@ -62,6 +62,22 @@ namespace XamlCardVisualizer
             image.Url = new Uri("https://unsplash.it/360/202?image=883");
             card.Body.Add(image);
 
+            AdaptiveFactSet factSet = new AdaptiveFactSet();
+            AdaptiveFact fact1 = new AdaptiveFact()
+            {
+                Title = "fact1 title",
+                Value = "fact1 value"
+            };
+
+            AdaptiveFact fact2 = new AdaptiveFact()
+            {
+                Title = "fact2 title",
+                Value = "fact2 value"
+            };
+            factSet.Facts.Add(fact1);
+            factSet.Facts.Add(fact2);
+            card.Body.Add(factSet);
+
             m_renderer = new AdaptiveCards.XamlCardRenderer.XamlCardRenderer();
 
             PopulateXamlContent(card);

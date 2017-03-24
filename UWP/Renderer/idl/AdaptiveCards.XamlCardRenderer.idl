@@ -26,7 +26,7 @@ namespace AdaptiveCards
         interface IAdaptiveColumn;
         interface IAdaptiveColumnSet;
         interface IAdaptiveFact;
-        interface IadaptiveFactSet;
+        interface IAdaptiveFactSet;
 
         [version(NTDDI_WIN10_RS1)]
         typedef [v1_enum] enum TextSize

@@ -37,6 +37,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         m_adaptiveElementBuilder[ElementType::Image] = std::bind(&XamlBuilder::BuildImage, this, std::placeholders::_1, std::placeholders::_2);
         m_adaptiveElementBuilder[ElementType::Container] = std::bind(&XamlBuilder::BuildContainer, this, std::placeholders::_1, std::placeholders::_2);
         m_adaptiveElementBuilder[ElementType::ColumnSet] = std::bind(&XamlBuilder::BuildColumnSet, this, std::placeholders::_1, std::placeholders::_2);
+        m_adaptiveElementBuilder[ElementType::FactSet] = std::bind(&XamlBuilder::BuildFactSet, this, std::placeholders::_1, std::placeholders::_2);
 
         m_imageLoadTracker.AddListener(this);
 
@@ -497,27 +498,88 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             IUIElement** factSetControl)
     {
         ComPtr<IAdaptiveCardElement> cardElement(adaptiveCardElement);
-        ComPtr<IAdaptiveContainer> adaptiveContainer;
-        THROW_IF_FAILED(cardElement.As(&adaptiveContainer));
+        ComPtr<IAdaptiveFactSet> adaptiveFactSet;
+        
+        THROW_IF_FAILED(cardElement.As(&adaptiveFactSet));
 
-        ComPtr<IStackPanel> xamlStackPanel = XamlHelpers::CreateXamlClass<IStackPanel>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_StackPanel));
-        xamlStackPanel->put_Orientation(Orientation::Orientation_Vertical);
+        ComPtr<IGrid> xamlGrid = XamlHelpers::CreateXamlClass<IGrid>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_Grid));
+        ComPtr<IGridStatics> gridStatics;
+        THROW_IF_FAILED(GetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_Grid).Get(), &gridStatics));
+
+        ComPtr<IColumnDefinition> titleColumn = XamlHelpers::CreateXamlClass<IColumnDefinition>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_ColumnDefinition));
+        ComPtr<IColumnDefinition> valueColumn = XamlHelpers::CreateXamlClass<IColumnDefinition>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_ColumnDefinition));
+        GridLength columnWidth = { 50.0, GridUnitType::GridUnitType_Star };
+
+        THROW_IF_FAILED(titleColumn->put_Width(columnWidth));
+        THROW_IF_FAILED(valueColumn->put_Width(columnWidth));
+        ComPtr<IVector<ColumnDefinition*>> columnDefinitions;
+        THROW_IF_FAILED(xamlGrid->get_ColumnDefinitions(&columnDefinitions));
+        THROW_IF_FAILED(columnDefinitions->Append(titleColumn.Get()));
+        THROW_IF_FAILED(columnDefinitions->Append(valueColumn.Get()));
+
+        // Create 
+        ComPtr<IVector<IAdaptiveFact*>> facts;
+        THROW_IF_FAILED(adaptiveFactSet->get_Facts(&facts));
+        int currentFact = 0;
+        XamlHelpers::IterateOverVector<IAdaptiveFact>(facts.Get(), [this, xamlGrid, gridStatics, &currentFact](IAdaptiveFact* fact)
+        {
+            ComPtr<IRowDefinition> factRow = XamlHelpers::CreateXamlClass<IRowDefinition>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_RowDefinition));
+            GridLength rowHeight = { 0.0, GridUnitType::GridUnitType_Auto };
+            THROW_IF_FAILED(factRow->put_Height(rowHeight));
+
+            ComPtr<IVector<RowDefinition*>> rowDefinitions;
+            THROW_IF_FAILED(xamlGrid->get_RowDefinitions(&rowDefinitions));
+            THROW_IF_FAILED(rowDefinitions->Append(factRow.Get()));
+
+
+            ComPtr<IAdaptiveFact> localFact(fact);
+            ComPtr<ITextBlock> titleTextBlock = XamlHelpers::CreateXamlClass<ITextBlock>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_TextBlock));
+            HString factTitle;
+            THROW_IF_FAILED(localFact->get_Title(factTitle.GetAddressOf()));
+            THROW_IF_FAILED(titleTextBlock->put_Text(factTitle.Get()));
+
+            ComPtr<ITextBlock> valueTextBlock = XamlHelpers::CreateXamlClass<ITextBlock>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_TextBlock));
+            HString factValue;
+            THROW_IF_FAILED(localFact->get_Value(factValue.GetAddressOf()));
+            THROW_IF_FAILED(valueTextBlock->put_Text(factValue.Get()));
+
+            ComPtr<IUIElement> xamlRow;
+
+            // Mark the column container with the current column
+            ComPtr<IFrameworkElement> titleTextBlockAsFrameWorkElement;
+            THROW_IF_FAILED(titleTextBlock.As(&titleTextBlockAsFrameWorkElement));
+            THROW_IF_FAILED(gridStatics->SetColumn(titleTextBlockAsFrameWorkElement.Get(), 0));
+            THROW_IF_FAILED(gridStatics->SetRow(titleTextBlockAsFrameWorkElement.Get(), currentFact));
+
+            ComPtr<IFrameworkElement> valueTextBlockAsFrameWorkElement;
+            THROW_IF_FAILED(valueTextBlock.As(&valueTextBlockAsFrameWorkElement));
+            THROW_IF_FAILED(gridStatics->SetColumn(valueTextBlockAsFrameWorkElement.Get(), 1));
+            THROW_IF_FAILED(gridStatics->SetRow(valueTextBlockAsFrameWorkElement.Get(), currentFact));
+
+            // Finally add the column container to the grid, and increment the column count
+            ComPtr<IPanel> gridAsPanel;
+            THROW_IF_FAILED(xamlGrid.As(&gridAsPanel));
+            ComPtr<IUIElement> titleUIElement;
+            THROW_IF_FAILED(titleTextBlockAsFrameWorkElement.As(&titleUIElement));
+            ComPtr<IUIElement> valueUIElement;
+            THROW_IF_FAILED(valueTextBlockAsFrameWorkElement.As(&valueUIElement));
+
+            XamlHelpers::AppendXamlElementToPanel(titleUIElement.Get(), gridAsPanel.Get());
+            XamlHelpers::AppendXamlElementToPanel(valueUIElement.Get(), gridAsPanel.Get());
+            ++currentFact;
+        });
 
         ComPtr<IStyle> style;
-        std::wstring styleName = XamlStyleKeyGenerators::GenerateKeyForContainer(adaptiveContainer.Get());
-        if (SUCCEEDED(TryGetResoureFromResourceDictionaries<IStyle>(styleName, &style)))
+        //std::wstring styleName = XamlStyleKeyGenerators::GenerateKeyForColumnSet(adaptiveFactSet.Get());
+        std::wstring styleName = L"temp";
+
+        if (false || SUCCEEDED(TryGetResoureFromResourceDictionaries<IStyle>(styleName, &style)))
         {
-            ComPtr<IFrameworkElement> stackPanelAsFrameworkElement;
-            THROW_IF_FAILED(xamlStackPanel.As(&stackPanelAsFrameworkElement));
-            THROW_IF_FAILED(stackPanelAsFrameworkElement->put_Style(style.Get()));
+            ComPtr<IFrameworkElement> gridAsFrameworkElement;
+            THROW_IF_FAILED(xamlGrid.As(&gridAsFrameworkElement));
+            THROW_IF_FAILED(gridAsFrameworkElement->put_Style(style.Get()));
         }
 
-        ComPtr<IPanel> stackPanelAsPanel;
-        THROW_IF_FAILED(xamlStackPanel.As(&stackPanelAsPanel));
-        ComPtr<IVector<IAdaptiveCardElement*>> childItems;
-        THROW_IF_FAILED(adaptiveContainer->get_Items(&childItems));
-        BuildPanelChildren(childItems.Get(), stackPanelAsPanel.Get(), [](IUIElement*) {});
-
-        THROW_IF_FAILED(xamlStackPanel.CopyTo(containerControl));
+        THROW_IF_FAILED(xamlGrid.CopyTo(factSetControl));
     }
 }}
