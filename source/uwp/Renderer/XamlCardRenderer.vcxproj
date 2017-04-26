@@ -120,6 +120,7 @@
     <ClInclude Include="lib\AdaptiveContainer.h" />
     <ClInclude Include="lib\AdaptiveFact.h" />
     <ClInclude Include="lib\AdaptiveFactSet.h" />
+    <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImage.h" />
     <ClInclude Include="lib\AdaptiveImageSet.h" />
     <ClInclude Include="lib\AdaptiveTextBlock.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="lib\AdaptiveContainer.cpp" />
     <ClCompile Include="lib\AdaptiveFact.cpp" />
     <ClCompile Include="lib\AdaptiveFactSet.cpp" />
+    <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImage.cpp" />
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />
     <ClCompile Include="lib\AdaptiveTextBlock.cpp" />
