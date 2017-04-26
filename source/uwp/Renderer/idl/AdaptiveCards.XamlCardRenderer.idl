@@ -19,6 +19,32 @@ namespace AdaptiveCards
         runtimeclass AdaptiveColumnSet;
         runtimeclass AdaptiveFact;
         runtimeclass AdaptiveFactSet;
+
+        runtimeclass AdaptiveBoundaryOptions;
+        runtimeclass AdaptiveFontSizeOptions;
+        runtimeclass AdaptiveColorOptions;
+        runtimeclass AdaptiveColorsOptions;
+        runtimeclass AdaptiveTextOptions;
+        runtimeclass AdaptiveSeparationOptions;
+        runtimeclass AdaptiveImageSizeOptions;
+        runtimeclass AdaptiveTextBlockOptions;
+        runtimeclass AdaptiveImageSetOptions;
+        runtimeclass AdaptiveColumnOptions;
+        runtimeclass AdaptiveContainerOptions;
+        runtimeclass AdaptiveColumnSetOptions;
+        runtimeclass AdaptiveImageOptions;
+        runtimeclass AdaptiveCardOptions;
+        runtimeclass AdaptiveFactSetOptions;
+        runtimeclass AdaptiveShowCardOptions;
+        runtimeclass AdaptiveActionOptions;
+        runtimeclass AdaptiveDateInputOptions;
+        runtimeclass AdaptiveTimeInputOptions;
+        runtimeclass AdaptiveNumberInputOptions;
+        runtimeclass AdaptiveToggleInputOptions;
+        runtimeclass AdaptiveTextInputOptions;
+        runtimeclass AdaptiveChoiceSetInputOptions;
+        runtimeclass AdaptiveHostOptions;
+
         interface IAdaptiveCardElement;
         interface IAdaptiveTextBlock;
         interface IAdaptiveCard;
@@ -29,6 +55,31 @@ namespace AdaptiveCards
         interface IAdaptiveColumnSet;
         interface IAdaptiveFact;
         interface IAdaptiveFactSet;
+
+        interface IAdaptiveBoundaryOptions;
+        interface IAdaptiveFontSizeOptions;
+        interface IAdaptiveColorOptions;
+        interface IAdaptiveColorsOptions;
+        interface IAdaptiveTextOptions;
+        interface IAdaptiveSeparationOptions;
+        interface IAdaptiveImageSizeOptions;
+        interface IAdaptiveTextBlockOptions;
+        interface IAdaptiveImageSetOptions;
+        interface IAdaptiveColumnOptions;
+        interface IAdaptiveContainerOptions;
+        interface IAdaptiveColumnSetOptions;
+        interface IAdaptiveImageOptions;
+        interface IAdaptiveCardOptions;
+        interface IAdaptiveFactSetOptions;
+        interface IAdaptiveShowCardOptions;
+        interface IAdaptiveActionOptions;
+        interface IAdaptiveDateInputOptions;
+        interface IAdaptiveTimeInputOptions;
+        interface IAdaptiveNumberInputOptions;
+        interface IAdaptiveToggleInputOptions;
+        interface IAdaptiveTextInputOptions;
+        interface IAdaptiveChoiceSetInputOptions;
+        interface IAdaptiveHostOptions;
 
         [version(NTDDI_WIN10_RS1)]
         typedef [v1_enum] enum TextSize
@@ -410,6 +461,7 @@ namespace AdaptiveCards
         {
             HRESULT SetRenderOptions([in] RenderOptions options);
             HRESULT SetOverrideStyles([in] Windows.UI.Xaml.ResourceDictionary* overrideDictionary);
+            HRESULT SetHostOptions([in] AdaptiveHostOptions* hostOptions);
 
             HRESULT RenderCardAsXaml([in] AdaptiveCard* adaptiveCard,[out, retval] Windows.UI.Xaml.UIElement** result);
             HRESULT RenderCardAsXamlAsync([in] AdaptiveCard* adaptiveCard,[out, retval] Windows.Foundation.IAsyncOperation<Windows.UI.Xaml.UIElement*>** result);
@@ -426,56 +478,6 @@ namespace AdaptiveCards
         {
             [default] interface IXamlCardRenderer;
         };
-
-        runtimeclass AdaptiveBoundaryOptions;
-        runtimeclass AdaptiveFontSizeOptions;
-        runtimeclass AdaptiveColorOptions;
-        runtimeclass AdaptiveColorsOptions;
-        runtimeclass AdaptiveTextOptions;
-        runtimeclass AdaptiveSeparationOptions;
-        runtimeclass AdaptiveImageSizeOptions;
-        runtimeclass AdaptiveTextBlockOptions;
-        runtimeclass AdaptiveImageSetOptions;
-        runtimeclass AdaptiveColumnOptions;
-        runtimeclass AdaptiveContainerOptions;
-        runtimeclass AdaptiveColumnSetOptions;
-        runtimeclass AdaptiveImageOptions;
-        runtimeclass AdaptiveCardOptions;
-        runtimeclass AdaptiveFactSetOptions;
-        runtimeclass AdaptiveShowCardOptions;
-        runtimeclass AdaptiveActionOptions;
-        runtimeclass AdaptiveDateInputOptions;
-        runtimeclass AdaptiveTimeInputOptions;
-        runtimeclass AdaptiveNumberInputOptions;
-        runtimeclass AdaptiveToggleInputOptions;
-        runtimeclass AdaptiveTextInputOptions;
-        runtimeclass AdaptiveChoiceSetInputOptions;
-        runtimeclass AdaptiveHostOptions;
-
-        interface IAdaptiveBoundaryOptions;
-        interface IAdaptiveFontSizeOptions;
-        interface IAdaptiveColorOptions;
-        interface IAdaptiveColorsOptions;
-        interface IAdaptiveTextOptions;
-        interface IAdaptiveSeparationOptions;
-        interface IAdaptiveImageSizeOptions;
-        interface IAdaptiveTextBlockOptions;
-        interface IAdaptiveImageSetOptions;
-        interface IAdaptiveColumnOptions;
-        interface IAdaptiveContainerOptions;
-        interface IAdaptiveColumnSetOptions;
-        interface IAdaptiveImageOptions;
-        interface IAdaptiveCardOptions;
-        interface IAdaptiveFactSetOptions;
-        interface IAdaptiveShowCardOptions;
-        interface IAdaptiveActionOptions;
-        interface IAdaptiveDateInputOptions;
-        interface IAdaptiveTimeInputOptions;
-        interface IAdaptiveNumberInputOptions;
-        interface IAdaptiveToggleInputOptions;
-        interface IAdaptiveTextInputOptions;
-        interface IAdaptiveChoiceSetInputOptions;
-        interface IAdaptiveHostOptions;
 
         [
             uuid(c49685af-df56-49ea-8fce-ce302788edc5),

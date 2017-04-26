@@ -7,6 +7,7 @@
 #include <Windows.UI.Xaml.h>
 #include "XamlBuilder.h"
 #include "XamlHelpers.h"
+#include "AdaptiveHostOptions.h"
 
 using namespace concurrency;
 using namespace Microsoft::WRL;
@@ -30,6 +31,8 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
     HRESULT XamlCardRenderer::RuntimeClassInitialize()
     {
+        m_hostOptions = Make<AdaptiveHostOptions>();
+
         return S_OK;
     }
 
@@ -43,6 +46,13 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     HRESULT XamlCardRenderer::SetOverrideStyles(ABI::Windows::UI::Xaml::IResourceDictionary* overrideDictionary)
     {
         m_overrideDictionary = overrideDictionary;
+        return S_OK;
+    }
+
+    _Use_decl_annotations_
+    HRESULT  XamlCardRenderer::SetHostOptions(IAdaptiveHostOptions * hostOptions)
+    {
+        m_hostOptions = hostOptions;
         return S_OK;
     }
 
