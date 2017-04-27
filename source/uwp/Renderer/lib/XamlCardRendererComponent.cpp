@@ -73,6 +73,11 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                 builder.SetOverrideDictionary(m_overrideDictionary.Get());
             }
 
+            if (m_hostOptions != nullptr)
+            {
+                builder.SetHostOptions(m_hostOptions.Get());
+            }
+
             // This path is used for synchronous Xaml card rendering, so we don't want
             // to manually download the image assets and instead just want xaml to do
             // that automatically

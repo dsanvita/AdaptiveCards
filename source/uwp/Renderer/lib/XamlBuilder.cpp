@@ -153,6 +153,12 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         return S_OK;
     } CATCH_RETURN;
 
+    HRESULT XamlBuilder::SetHostOptions(_In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveHostOptions* hostOptions) noexcept try
+    {
+        m_hostOptions = hostOptions;
+        return S_OK;
+    } CATCH_RETURN;
+
     void XamlBuilder::InitializeDefaultResourceDictionary()
     {
         ComPtr<IXamlReaderStatics> xamlReaderStatics;
