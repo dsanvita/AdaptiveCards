@@ -666,17 +666,11 @@ namespace AdaptiveCards
             [propget] HRESULT Small([out, retval] INT32 *value);
             [propput] HRESULT Small([in] INT32 value);
 
-            [propget] HRESULT Normal([out, retval] INT32 *value);
-            [propput] HRESULT Normal([in] INT32 value);
-
             [propget] HRESULT Medium([out, retval] INT32 *value);
             [propput] HRESULT Medium([in] INT32 value);
 
             [propget] HRESULT Large([out, retval] INT32 *value);
             [propput] HRESULT Large([in] INT32 value);
-
-            [propget] HRESULT ExtraLarge([out, retval] INT32 *value);
-            [propput] HRESULT ExtraLarge([in] INT32 value);
         };
 
         [

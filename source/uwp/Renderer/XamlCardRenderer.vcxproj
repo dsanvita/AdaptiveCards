@@ -123,6 +123,7 @@
     <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImage.h" />
     <ClInclude Include="lib\AdaptiveImageSet.h" />
+    <ClInclude Include="lib\AdaptiveImageSizeOptions.h" />
     <ClInclude Include="lib\AdaptiveTextBlock.h" />
     <ClInclude Include="lib\AsyncOperations.h" />
     <ClInclude Include="lib\DefaultResourceDictionary.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImage.cpp" />
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />
+    <ClCompile Include="lib\AdaptiveImageSizeOptions.cpp" />
     <ClCompile Include="lib\AdaptiveTextBlock.cpp" />
     <ClCompile Include="lib\ImageLoadTracker.cpp" />
     <ClCompile Include="lib\Util.cpp" />
