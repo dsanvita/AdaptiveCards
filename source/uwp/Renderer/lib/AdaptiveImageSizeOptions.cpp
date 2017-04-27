@@ -27,44 +27,44 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::get_Small(INT32* smallish)
+    HRESULT AdaptiveImageSizeOptions::get_Small(INT32* smallSize)
     {
-        *smallish = m_sharedImageSizeOptions.smallish;
+        *smallSize = m_sharedImageSizeOptions.smallSize;
         return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::put_Small(INT32 smallish)
+    HRESULT AdaptiveImageSizeOptions::put_Small(INT32 smallSize)
     {
-        m_sharedImageSizeOptions.smallish = smallish;
+        m_sharedImageSizeOptions.smallSize = smallSize;
         return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::get_Medium(INT32* medium)
+    HRESULT AdaptiveImageSizeOptions::get_Medium(INT32* mediumSize)
     {
-        *medium = m_sharedImageSizeOptions.medium;
+        *mediumSize = m_sharedImageSizeOptions.mediumSize;
         return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::put_Medium(INT32 medium)
+    HRESULT AdaptiveImageSizeOptions::put_Medium(INT32 mediumSize)
     {
-        m_sharedImageSizeOptions.medium = medium;
+        m_sharedImageSizeOptions.mediumSize = mediumSize;
         return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::get_Large(INT32* large)
+    HRESULT AdaptiveImageSizeOptions::get_Large(INT32* largeSize)
     {
-        *large = m_sharedImageSizeOptions.large;
+        *largeSize = m_sharedImageSizeOptions.largeSize;
         return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveImageSizeOptions::put_Large(INT32 large)
+    HRESULT AdaptiveImageSizeOptions::put_Large(INT32 largeSize)
     {
-        m_sharedImageSizeOptions.large = large;
+        m_sharedImageSizeOptions.largeSize = largeSize;
         return S_OK;
     }
 }

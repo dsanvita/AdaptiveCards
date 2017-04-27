@@ -543,9 +543,9 @@ namespace AdaptiveCards
         [
             uuid(421149d7-65e9-4ec9-b70b-802ba7d6cf98),
             version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveColorOptions)
+            exclusiveto(AdaptiveColorOption)
         ]
-        interface IAdaptiveColorOptions : IInspectable
+        interface IAdaptiveColorOption : IInspectable
         {
             [propget] HRESULT Normal([out, retval] HSTRING* value);
             [propput] HRESULT Normal([in] HSTRING value);
@@ -558,17 +558,17 @@ namespace AdaptiveCards
             version(NTDDI_WIN10_RS1),
             activatable(NTDDI_WIN10_RS1)
         ]
-        runtimeclass AdaptiveColorsOptions
+        runtimeclass AdaptiveColorOption
         {
-            [default] interface IAdaptiveColorsOptions;
+            [default] interface IAdaptiveColorOption;
         };
 
         [
             uuid(1ade7d94-f0ae-4301-a9e2-b1f9c065916f),
             version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveColorsOptions)
+            exclusiveto(AdaptiveColorOptions)
         ]
-        interface IAdaptiveColorsOptions : IInspectable
+        interface IAdaptiveColorOptions : IInspectable
         {
             [propget] HRESULT Default([out][retval] Windows.UI.Color* value);
             [propput] HRESULT Default([in] Windows.UI.Color value);
