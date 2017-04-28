@@ -11,6 +11,7 @@
 #include <windows.web.http.filters.h>
 #include "XamlHelpers.h"
 #include "XamlStyleKeyGenerators.h"
+#include "AdaptiveHostOptions.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -43,6 +44,8 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         m_adaptiveElementBuilder[ElementType::ColumnSet] = std::bind(&XamlBuilder::BuildColumnSet, this, std::placeholders::_1, std::placeholders::_2);
         m_adaptiveElementBuilder[ElementType::FactSet] = std::bind(&XamlBuilder::BuildFactSet, this, std::placeholders::_1, std::placeholders::_2);
         m_adaptiveElementBuilder[ElementType::ImageSet] = std::bind(&XamlBuilder::BuildImageSet, this, std::placeholders::_1, std::placeholders::_2);
+
+        m_hostOptions = Make<AdaptiveHostOptions>();
 
         m_imageLoadTracker.AddListener(dynamic_cast<IImageLoadTrackerListener*>(this));
 
@@ -611,23 +614,40 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             THROW_IF_FAILED(xamlImage.As(&frameworkElement));
         }
 
-        // TODO: 11508861 Hardcoded image sizes for now.  These will be retrieved from the HostConfig.
+        ComPtr<IAdaptiveImageSizeOptions> sizeOptions;
+        THROW_IF_FAILED(m_hostOptions->get_ImageSizes(sizeOptions.GetAddressOf()));
+
         switch (size)
         {
             case ABI::AdaptiveCards::XamlCardRenderer::ImageSize::Small:
-                THROW_IF_FAILED(frameworkElement->put_Width(60));
-                THROW_IF_FAILED(frameworkElement->put_Height(60));
+            {
+                INT32 imageSize;
+                THROW_IF_FAILED(sizeOptions->get_Small(&imageSize));
+
+                THROW_IF_FAILED(frameworkElement->put_Width(imageSize));
+                THROW_IF_FAILED(frameworkElement->put_Height(imageSize));
                 break;
+            }
 
             case ABI::AdaptiveCards::XamlCardRenderer::ImageSize::Medium:
-                THROW_IF_FAILED(frameworkElement->put_Width(120));
-                THROW_IF_FAILED(frameworkElement->put_Height(120));
+            {
+                INT32 imageSize;
+                THROW_IF_FAILED(sizeOptions->get_Medium(&imageSize));
+
+                THROW_IF_FAILED(frameworkElement->put_Width(imageSize));
+                THROW_IF_FAILED(frameworkElement->put_Height(imageSize));
                 break;
+            }
 
             case ABI::AdaptiveCards::XamlCardRenderer::ImageSize::Large:
-                THROW_IF_FAILED(frameworkElement->put_Width(180));
-                THROW_IF_FAILED(frameworkElement->put_Height(180));
+            {
+                INT32 imageSize;
+                THROW_IF_FAILED(sizeOptions->get_Large(&imageSize));
+
+                THROW_IF_FAILED(frameworkElement->put_Width(imageSize));
+                THROW_IF_FAILED(frameworkElement->put_Height(imageSize));
                 break;
+            }
         }
 
         ABI::AdaptiveCards::XamlCardRenderer::HAlignment adaptiveHorizontalAlignment;

@@ -3,6 +3,7 @@
 #include "Util.h"
 #include <windows.foundation.collections.h>
 #include "XamlCardRendererComponent.h"
+#include "AdaptiveImageSizeOptions.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -84,9 +85,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_ImageSizes(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSizeOptions ** )
+    HRESULT AdaptiveHostOptions::get_ImageSizes(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSizeOptions ** imageSizes)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveImageSizeOptions>(imageSizes, m_sharedHostOptions.imageSizes);
     }
 
     _Use_decl_annotations_
