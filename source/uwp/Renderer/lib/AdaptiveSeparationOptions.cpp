@@ -17,9 +17,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         return S_OK;
     } CATCH_RETURN;
 
-    HRESULT AdaptiveSeparationOptions::RuntimeClassInitialize(SeparationOptions colorOptions) noexcept
+    HRESULT AdaptiveSeparationOptions::RuntimeClassInitialize(SeparationOptions separationOptions) noexcept
     {
-        m_sharedSeparationOptions = colorOptions;
+        m_sharedSeparationOptions = separationOptions;
         return S_OK;
     }
 

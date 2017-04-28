@@ -127,6 +127,7 @@
     <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImage.h" />
     <ClInclude Include="lib\AdaptiveImageSet.h" />
+    <ClInclude Include="lib\AdaptiveImageSetOptions.h" />
     <ClInclude Include="lib\AdaptiveImageSizeOptions.h" />
     <ClInclude Include="lib\AdaptiveSeparationOptions.h" />
     <ClInclude Include="lib\AdaptiveTextBlock.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImage.cpp" />
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />
+    <ClCompile Include="lib\AdaptiveImageSetOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImageSizeOptions.cpp" />
     <ClCompile Include="lib\AdaptiveSeparationOptions.cpp" />
     <ClCompile Include="lib\AdaptiveTextBlock.cpp" />
