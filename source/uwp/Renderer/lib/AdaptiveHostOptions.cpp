@@ -5,6 +5,15 @@
 #include "XamlCardRendererComponent.h"
 #include "AdaptiveImageSizeOptions.h"
 #include "AdaptiveImageSetOptions.h"
+#include "AdaptiveImageOptions.h"
+#include "AdaptiveChoiceSetInputOptions.h"
+#include "AdaptiveColumnSetOptions.h"
+#include "AdaptiveContainerOptions.h"
+#include "AdaptiveDateInputOptions.h"
+#include "AdaptiveNumberInputOptions.h"
+#include "AdaptiveTextInputOptions.h"
+#include "AdaptiveTimeInputOptions.h"
+#include "AdaptiveToggleInputOptions.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -148,9 +157,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_Image(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageOptions ** )
+    HRESULT AdaptiveHostOptions::get_Image(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageOptions ** imageOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveImageOptions>(imageOptions, m_sharedHostOptions.image);
     }
 
     _Use_decl_annotations_
@@ -184,9 +193,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_Container(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveContainerOptions ** )
+    HRESULT AdaptiveHostOptions::get_Container(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveContainerOptions ** containerOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveContainerOptions>(containerOptions, m_sharedHostOptions.container);
     }
 
     _Use_decl_annotations_
@@ -196,9 +205,10 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_ColumnSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColumnSetOptions ** )
+    HRESULT AdaptiveHostOptions::get_ColumnSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColumnSetOptions ** columnSetOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColumnSetOptions>(columnSetOptions, m_sharedHostOptions.columnSet);
+
     }
 
     _Use_decl_annotations_
@@ -220,9 +230,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_DateInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveDateInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_DateInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveDateInputOptions ** dateInputOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveDateInputOptions>(dateInputOptions, m_sharedHostOptions.dateInput);
     }
 
     _Use_decl_annotations_
@@ -232,9 +242,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_TimeInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTimeInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_TimeInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTimeInputOptions ** timeInputOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveTimeInputOptions>(timeInputOptions, m_sharedHostOptions.timeInput);
     }
 
     _Use_decl_annotations_
@@ -244,9 +254,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_NumberInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveNumberInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_NumberInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveNumberInputOptions ** numberInputOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveNumberInputOptions>(numberInputOptions, m_sharedHostOptions.numberInput);
     }
 
     _Use_decl_annotations_
@@ -256,9 +266,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_ToggleInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveToggleInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_ToggleInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveToggleInputOptions ** toggleInputOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveToggleInputOptions>(toggleInputOptions, m_sharedHostOptions.toggleInput);
     }
 
     _Use_decl_annotations_
@@ -268,9 +278,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_TextInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTextInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_TextInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTextInputOptions ** textInputOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveTextInputOptions>(textInputOptions, m_sharedHostOptions.textInput);
     }
 
     _Use_decl_annotations_
@@ -280,9 +290,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_ChoiceSetInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveChoiceSetInputOptions ** )
+    HRESULT AdaptiveHostOptions::get_ChoiceSetInput(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveChoiceSetInputOptions ** choiceSetOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveChoiceSetInputOptions>(choiceSetOptions, m_sharedHostOptions.choiceSet);
     }
 
     _Use_decl_annotations_
