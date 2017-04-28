@@ -131,7 +131,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     HRESULT AdaptiveActionOptions::put_ActionsOrientation(ABI::AdaptiveCards::XamlCardRenderer::ActionsOrientation value)
     {
         m_sharedActionOptions.actionsOrientation = static_cast<AdaptiveCards::ActionsOrientation>(value);
-        return E_NOTIMPL;
+        return S_OK;
     }
 
     _Use_decl_annotations_

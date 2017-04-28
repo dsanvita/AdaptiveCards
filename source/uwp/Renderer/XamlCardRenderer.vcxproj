@@ -130,6 +130,7 @@
     <ClInclude Include="lib\AdaptiveDateInputOptions.h" />
     <ClInclude Include="lib\AdaptiveFact.h" />
     <ClInclude Include="lib\AdaptiveFactSet.h" />
+    <ClInclude Include="lib\AdaptiveFactSetOptions.h" />
     <ClInclude Include="lib\AdaptiveFontSizeOptions.h" />
     <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImage.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="lib\AdaptiveDateInputOptions.cpp" />
     <ClCompile Include="lib\AdaptiveFact.cpp" />
     <ClCompile Include="lib\AdaptiveFactSet.cpp" />
+    <ClCompile Include="lib\AdaptiveFactSetOptions.cpp" />
     <ClCompile Include="lib\AdaptiveFontSizeOptions.cpp" />
     <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImage.cpp" />
