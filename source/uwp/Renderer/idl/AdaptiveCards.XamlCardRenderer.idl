@@ -689,20 +689,20 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveTextBlockOptions : IInspectable
         {
-            [propget] HRESULT Small([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Small([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT SmallSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT SmallSeparation([in] AdaptiveSeparationOptions *value);
 
-            [propget] HRESULT Normal([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Normal([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT NormalSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT NormalSeparation([in] AdaptiveSeparationOptions *value);
 
-            [propget] HRESULT Medium([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Medium([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT MediumSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT MediumSeparation([in] AdaptiveSeparationOptions *value);
 
-            [propget] HRESULT Large([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Large([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT LargeSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT LargeSeparation([in] AdaptiveSeparationOptions *value);
 
-            [propget] HRESULT ExtraLarge([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT ExtraLarge([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT ExtraLargeSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT ExtraLargeSeparation([in] AdaptiveSeparationOptions *value);
         };
 
         [
@@ -744,11 +744,11 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveColumnOptions : IInspectable
         {
-            [propget] HRESULT Default([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Default([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT DefaultSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT DefaultSeparation([in] AdaptiveSeparationOptions *value);
 
-            [propget] HRESULT Strong([out, retval] AdaptiveSeparationOptions **value);
-            [propput] HRESULT Strong([in] AdaptiveSeparationOptions *value);
+            [propget] HRESULT StrongSeparation([out, retval] AdaptiveSeparationOptions **value);
+            [propput] HRESULT StrongSeparation([in] AdaptiveSeparationOptions *value);
         };
 
         [
@@ -839,8 +839,8 @@ namespace AdaptiveCards
             [propget] HRESULT ActionsOrientation([out][retval] ActionsOrientation* value);
             [propput] HRESULT ActionsOrientation([in] ActionsOrientation value);
 
-            [propget] HRESULT HorizontalAlignment([out][retval] HAlignment* value);
-            [propput] HRESULT HorizontalAlignment([in] HAlignment value);
+            [propget] HRESULT ActionAlignment([out][retval] HAlignment* value);
+            [propput] HRESULT ActionAlignment([in] HAlignment value);
 
             [propget] HRESULT TextColor([out][retval] Windows.UI.Color* value);
             [propput] HRESULT TextColor([in] Windows.UI.Color value);

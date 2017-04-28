@@ -3,14 +3,18 @@
 #include "Util.h"
 #include <windows.foundation.collections.h>
 #include "XamlCardRendererComponent.h"
-#include "AdaptiveImageSizeOptions.h"
-#include "AdaptiveImageSetOptions.h"
-#include "AdaptiveImageOptions.h"
+#include "AdaptiveActionOptions.h"
+#include "AdaptiveCardOptions.h"
 #include "AdaptiveChoiceSetInputOptions.h"
+#include "AdaptiveColumnOptions.h"
 #include "AdaptiveColumnSetOptions.h"
 #include "AdaptiveContainerOptions.h"
 #include "AdaptiveDateInputOptions.h"
+#include "AdaptiveImageOptions.h"
+#include "AdaptiveImageSetOptions.h"
+#include "AdaptiveImageSizeOptions.h"
 #include "AdaptiveNumberInputOptions.h"
+#include "AdaptiveTextBlockOptions.h"
 #include "AdaptiveTextInputOptions.h"
 #include "AdaptiveTimeInputOptions.h"
 #include "AdaptiveToggleInputOptions.h"
@@ -133,9 +137,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions** )
+    HRESULT AdaptiveHostOptions::get_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions** adaptiveCardOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveCardOptions>(adaptiveCardOptions, m_sharedHostOptions.adaptiveCard);
     }
 
     _Use_decl_annotations_
@@ -181,9 +185,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_Column(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColumnOptions ** )
+    HRESULT AdaptiveHostOptions::get_Column(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColumnOptions ** columnOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColumnOptions>(columnOptions, m_sharedHostOptions.column);
     }
 
     _Use_decl_annotations_
@@ -218,9 +222,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_TextBlock(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTextBlockOptions ** )
+    HRESULT AdaptiveHostOptions::get_TextBlock(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveTextBlockOptions ** textBlockOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveTextBlockOptions>(textBlockOptions, m_sharedHostOptions.textBlock);
     }
 
     _Use_decl_annotations_
@@ -302,9 +306,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_Actions(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveActionOptions ** )
+    HRESULT AdaptiveHostOptions::get_Actions(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveActionOptions ** actionOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveActionOptions>(actionOptions, m_sharedHostOptions.actions);
     }
 
     _Use_decl_annotations_

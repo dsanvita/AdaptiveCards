@@ -33,6 +33,11 @@
     <ClCompile Include="lib\AdaptiveTextInputOptions.cpp" />
     <ClCompile Include="lib\AdaptiveTimeInputOptions.cpp" />
     <ClCompile Include="lib\AdaptiveToggleInputOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveColumnOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveTextBlockOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveCardOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveActionOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveShowCardOptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\AdaptiveCard.h" />
@@ -75,6 +80,11 @@
     <ClInclude Include="lib\AdaptiveTextInputOptions.h" />
     <ClInclude Include="lib\AdaptiveTimeInputOptions.h" />
     <ClInclude Include="lib\AdaptiveToggleInputOptions.h" />
+    <ClInclude Include="lib\AdaptiveColumnOptions.h" />
+    <ClInclude Include="lib\AdaptiveTextBlockOptions.h" />
+    <ClInclude Include="lib\AdaptiveCardOptions.h" />
+    <ClInclude Include="lib\AdaptiveActionOptions.h" />
+    <ClInclude Include="lib\AdaptiveShowCardOptions.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="idl\AdaptiveCards.XamlCardRenderer.idl" />

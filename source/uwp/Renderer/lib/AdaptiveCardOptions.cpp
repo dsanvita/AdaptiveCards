@@ -4,6 +4,7 @@
 #include <windows.foundation.collections.h>
 #include "XamlCardRendererComponent.h"
 #include "AdaptiveCardOptions.h"
+#include "AdaptiveBoundaryOptions.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -25,9 +26,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveCardOptions::get_Padding(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveBoundaryOptions ** value)
+    HRESULT AdaptiveCardOptions::get_Padding(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveBoundaryOptions ** boundaryOptions)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveBoundaryOptions>(boundaryOptions, m_sharedAdaptiveCardOptions.padding);
     }
 
     _Use_decl_annotations_
@@ -60,19 +61,21 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::put_ActionAlignment(HAlignment value)
     {
-        m_sharedAdaptiveCardOptions.actionAlignment = static_cast<HAlignment>(value);
+        m_sharedAdaptiveCardOptions.actionAlignment = static_cast<AdaptiveCards::HorizontalAlignment>(value);
         return S_OK;
     }
 
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::get_ActionsOrientation(ABI::AdaptiveCards::XamlCardRenderer::ActionsOrientation* value)
     {
-        return E_NOTIMPL;
+        *value = static_cast<ABI::AdaptiveCards::XamlCardRenderer::ActionsOrientation>(m_sharedAdaptiveCardOptions.actionsOrientation);
+        return S_OK;
     }
 
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::put_ActionsOrientation(ABI::AdaptiveCards::XamlCardRenderer::ActionsOrientation value)
     {
+        m_sharedAdaptiveCardOptions.actionsOrientation = static_cast<AdaptiveCards::ActionsOrientation>(value);
         return E_NOTIMPL;
     }
 
