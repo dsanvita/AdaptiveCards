@@ -23,7 +23,7 @@ namespace AdaptiveCards
         runtimeclass AdaptiveBoundaryOptions;
         runtimeclass AdaptiveFontSizeOptions;
         runtimeclass AdaptiveColorOptions;
-        runtimeclass AdaptiveColorsOptions;
+        runtimeclass AdaptiveColorOption;
         runtimeclass AdaptiveTextOptions;
         runtimeclass AdaptiveSeparationOptions;
         runtimeclass AdaptiveImageSizeOptions;
@@ -58,8 +58,8 @@ namespace AdaptiveCards
 
         interface IAdaptiveBoundaryOptions;
         interface IAdaptiveFontSizeOptions;
+        interface IAdaptiveColorOption;
         interface IAdaptiveColorOptions;
-        interface IAdaptiveColorsOptions;
         interface IAdaptiveTextOptions;
         interface IAdaptiveSeparationOptions;
         interface IAdaptiveImageSizeOptions;
@@ -547,11 +547,11 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveColorOption : IInspectable
         {
-            [propget] HRESULT Normal([out, retval] HSTRING* value);
-            [propput] HRESULT Normal([in] HSTRING value);
+            [propget] HRESULT Normal([out][retval] Windows.UI.Color* value);
+            [propput] HRESULT Normal([in] Windows.UI.Color value);
 
-            [propget] HRESULT Subtle([out, retval] HSTRING* value);
-            [propput] HRESULT Subtle([in] HSTRING value);
+            [propget] HRESULT Subtle([out][retval] Windows.UI.Color* value);
+            [propput] HRESULT Subtle([in] Windows.UI.Color value);
         };
 
         [
@@ -570,26 +570,26 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveColorOptions : IInspectable
         {
-            [propget] HRESULT Default([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Default([in] Windows.UI.Color value);
+            [propget] HRESULT Default([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Default([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Accent([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Accent([in] Windows.UI.Color value);
+            [propget] HRESULT Accent([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Accent([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Dark([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Dark([in] Windows.UI.Color value);
+            [propget] HRESULT Dark([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Dark([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Light([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Light([in] Windows.UI.Color value);
+            [propget] HRESULT Light([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Light([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Good([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Good([in] Windows.UI.Color value);
+            [propget] HRESULT Good([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Good([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Warning([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Warning([in] Windows.UI.Color value);
+            [propget] HRESULT Warning([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Warning([in] AdaptiveColorOption* value);
 
-            [propget] HRESULT Attention([out][retval] Windows.UI.Color* value);
-            [propput] HRESULT Attention([in] Windows.UI.Color value);
+            [propget] HRESULT Attention([out][retval] AdaptiveColorOption** value);
+            [propput] HRESULT Attention([in] AdaptiveColorOption* value);
         };
 
         [

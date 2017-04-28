@@ -115,6 +115,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="lib\AdaptiveCard.h" />
+    <ClInclude Include="lib\AdaptiveColorOption.h" />
+    <ClInclude Include="lib\AdaptiveColorOptions.h" />
     <ClInclude Include="lib\AdaptiveColumn.h" />
     <ClInclude Include="lib\AdaptiveColumnSet.h" />
     <ClInclude Include="lib\AdaptiveContainer.h" />
@@ -124,7 +126,9 @@
     <ClInclude Include="lib\AdaptiveImage.h" />
     <ClInclude Include="lib\AdaptiveImageSet.h" />
     <ClInclude Include="lib\AdaptiveImageSizeOptions.h" />
+    <ClInclude Include="lib\AdaptiveSeparationOptions.h" />
     <ClInclude Include="lib\AdaptiveTextBlock.h" />
+    <ClInclude Include="lib\AdaptiveTextOptions.h" />
     <ClInclude Include="lib\AsyncOperations.h" />
     <ClInclude Include="lib\DefaultResourceDictionary.h" />
     <ClInclude Include="lib\ErrorHandling.h" />
@@ -137,6 +141,8 @@
     <ClInclude Include="lib\XamlBuilder.h" />
     <ClInclude Include="lib\XamlCardRendererComponent.h" />
     <ClCompile Include="lib\AdaptiveCard.cpp" />
+    <ClCompile Include="lib\AdaptiveColorOption.cpp" />
+    <ClCompile Include="lib\AdaptiveColorOptions.cpp" />
     <ClCompile Include="lib\AdaptiveColumn.cpp" />
     <ClCompile Include="lib\AdaptiveColumnSet.cpp" />
     <ClCompile Include="lib\AdaptiveContainer.cpp" />
@@ -146,7 +152,9 @@
     <ClCompile Include="lib\AdaptiveImage.cpp" />
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />
     <ClCompile Include="lib\AdaptiveImageSizeOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveSeparationOptions.cpp" />
     <ClCompile Include="lib\AdaptiveTextBlock.cpp" />
+    <ClCompile Include="lib\AdaptiveTextOptions.cpp" />
     <ClCompile Include="lib\ImageLoadTracker.cpp" />
     <ClCompile Include="lib\Util.cpp" />
     <ClCompile Include="lib\XamlBuilder.cpp" />

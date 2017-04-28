@@ -17,6 +17,10 @@
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />
     <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImageSizeOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveColorOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveColorOption.cpp" />
+    <ClCompile Include="lib\AdaptiveTextOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveSeparationOptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\AdaptiveCard.h" />
@@ -43,6 +47,10 @@
     <ClInclude Include="lib\AdaptiveImageSet.h" />
     <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImageSizeOptions.h" />
+    <ClInclude Include="lib\AdaptiveColorOptions.h" />
+    <ClInclude Include="lib\AdaptiveColorOption.h" />
+    <ClInclude Include="lib\AdaptiveTextOptions.h" />
+    <ClInclude Include="lib\AdaptiveSeparationOptions.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="idl\AdaptiveCards.XamlCardRenderer.idl" />
