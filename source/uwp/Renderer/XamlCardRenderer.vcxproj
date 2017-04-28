@@ -114,6 +114,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="lib\AdaptiveBoundaryOptions.h" />
     <ClInclude Include="lib\AdaptiveCard.h" />
     <ClInclude Include="lib\AdaptiveColorOption.h" />
     <ClInclude Include="lib\AdaptiveColorOptions.h" />
@@ -122,6 +123,7 @@
     <ClInclude Include="lib\AdaptiveContainer.h" />
     <ClInclude Include="lib\AdaptiveFact.h" />
     <ClInclude Include="lib\AdaptiveFactSet.h" />
+    <ClInclude Include="lib\AdaptiveFontSizeOptions.h" />
     <ClInclude Include="lib\AdaptiveHostOptions.h" />
     <ClInclude Include="lib\AdaptiveImage.h" />
     <ClInclude Include="lib\AdaptiveImageSet.h" />
@@ -140,6 +142,7 @@
     <ClInclude Include="lib\Vector.h" />
     <ClInclude Include="lib\XamlBuilder.h" />
     <ClInclude Include="lib\XamlCardRendererComponent.h" />
+    <ClCompile Include="lib\AdaptiveBoundaryOptions.cpp" />
     <ClCompile Include="lib\AdaptiveCard.cpp" />
     <ClCompile Include="lib\AdaptiveColorOption.cpp" />
     <ClCompile Include="lib\AdaptiveColorOptions.cpp" />
@@ -148,6 +151,7 @@
     <ClCompile Include="lib\AdaptiveContainer.cpp" />
     <ClCompile Include="lib\AdaptiveFact.cpp" />
     <ClCompile Include="lib\AdaptiveFactSet.cpp" />
+    <ClCompile Include="lib\AdaptiveFontSizeOptions.cpp" />
     <ClCompile Include="lib\AdaptiveHostOptions.cpp" />
     <ClCompile Include="lib\AdaptiveImage.cpp" />
     <ClCompile Include="lib\AdaptiveImageSet.cpp" />

@@ -46,15 +46,17 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_SupportsInteractivity(boolean * )
+    HRESULT AdaptiveHostOptions::get_SupportsInteractivity(boolean* supporsInteractivity)
     {
-        return E_NOTIMPL;
+        *supporsInteractivity = m_sharedHostOptions.supportsInteractivity;
+        return S_OK;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::put_SupportsInteractivity(boolean )
+    HRESULT AdaptiveHostOptions::put_SupportsInteractivity(boolean supportsInteractivity)
     {
-        return E_NOTIMPL;
+        m_sharedHostOptions.supportsInteractivity = Boolify(supportsInteractivity);
+        return S_OK;
     }
 
     _Use_decl_annotations_
@@ -94,7 +96,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_MaxActions(INT32 * maxActions)
+    HRESULT AdaptiveHostOptions::get_MaxActions(INT32* maxActions)
     {
         *maxActions = m_sharedHostOptions.maxActions;
         return S_OK;
@@ -108,37 +110,37 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_StrongSeparation(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveSeparationOptions **)
+    HRESULT AdaptiveHostOptions::get_StrongSeparation(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveSeparationOptions**)
     {
         return E_NOTIMPL;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::put_StrongSeparation(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveSeparationOptions *)
+    HRESULT AdaptiveHostOptions::put_StrongSeparation(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveSeparationOptions*)
     {
         return E_NOTIMPL;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions ** )
+    HRESULT AdaptiveHostOptions::get_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions** )
     {
         return E_NOTIMPL;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::put_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions * )
+    HRESULT AdaptiveHostOptions::put_AdaptiveCard(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardOptions* )
     {
         return E_NOTIMPL;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::get_ImageSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSetOptions ** )
+    HRESULT AdaptiveHostOptions::get_ImageSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSetOptions** )
     {
         return E_NOTIMPL;
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveHostOptions::put_ImageSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSetOptions * )
+    HRESULT AdaptiveHostOptions::put_ImageSet(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveImageSetOptions* )
     {
         return E_NOTIMPL;
     }

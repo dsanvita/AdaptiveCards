@@ -21,6 +21,8 @@
     <ClCompile Include="lib\AdaptiveColorOption.cpp" />
     <ClCompile Include="lib\AdaptiveTextOptions.cpp" />
     <ClCompile Include="lib\AdaptiveSeparationOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveFontSizeOptions.cpp" />
+    <ClCompile Include="lib\AdaptiveBoundaryOptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\AdaptiveCard.h" />
@@ -51,6 +53,8 @@
     <ClInclude Include="lib\AdaptiveColorOption.h" />
     <ClInclude Include="lib\AdaptiveTextOptions.h" />
     <ClInclude Include="lib\AdaptiveSeparationOptions.h" />
+    <ClInclude Include="lib\AdaptiveFontSizeOptions.h" />
+    <ClInclude Include="lib\AdaptiveBoundaryOptions.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="idl\AdaptiveCards.XamlCardRenderer.idl" />
