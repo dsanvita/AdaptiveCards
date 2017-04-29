@@ -82,7 +82,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::get_BorderColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedAdaptiveCardOptions.borderColor, value);
     }
 
     _Use_decl_annotations_
@@ -94,7 +94,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::get_TextColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedAdaptiveCardOptions.textColor, value);
     }
 
     _Use_decl_annotations_
@@ -106,7 +106,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveCardOptions::get_BackgroundColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedAdaptiveCardOptions.backgroundColor, value);
     }
 
     _Use_decl_annotations_

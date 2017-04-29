@@ -137,7 +137,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveActionOptions::get_BorderColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedActionOptions.borderColor, value);
     }
 
     _Use_decl_annotations_
@@ -149,7 +149,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveActionOptions::get_TextColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedActionOptions.textColor, value);
     }
 
     _Use_decl_annotations_
@@ -161,7 +161,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveActionOptions::get_BackgroundColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedActionOptions.backgroundColor, value);
     }
 
     _Use_decl_annotations_

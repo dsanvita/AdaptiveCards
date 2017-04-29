@@ -29,7 +29,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveColorOption::get_Normal(ABI::Windows::UI::Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedColorOption.normal, value);
     }
 
     _Use_decl_annotations_
@@ -41,7 +41,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveColorOption::get_Subtle(ABI::Windows::UI::Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedColorOption.subtle, value);
     }
 
     _Use_decl_annotations_

@@ -4,6 +4,7 @@
 #include <windows.foundation.collections.h>
 #include "XamlCardRendererComponent.h"
 #include "AdaptiveColorOptions.h"
+#include "AdaptiveColorOption.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -27,9 +28,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Default(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Default(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** defaultColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(defaultColorOption, m_sharedColorOptions.defaultColor);
     }
 
     _Use_decl_annotations_
@@ -39,9 +40,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Accent(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Accent(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** accentColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(accentColorOption, m_sharedColorOptions.accent);
     }
 
     _Use_decl_annotations_
@@ -51,9 +52,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Dark(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Dark(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** darkColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(darkColorOption, m_sharedColorOptions.dark);
     }
 
     _Use_decl_annotations_
@@ -63,9 +64,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Light(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Light(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** lightColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(lightColorOption, m_sharedColorOptions.light);
     }
 
     _Use_decl_annotations_
@@ -75,9 +76,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Good(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Good(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** goodColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(goodColorOption, m_sharedColorOptions.good);
     }
 
     _Use_decl_annotations_
@@ -86,9 +87,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         return E_NOTIMPL;
     }
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Warning(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Warning(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** warningColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(warningColorOption, m_sharedColorOptions.warning);
     }
 
     _Use_decl_annotations_
@@ -98,9 +99,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
     
     _Use_decl_annotations_
-    HRESULT AdaptiveColorOptions::get_Attention(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** value)
+    HRESULT AdaptiveColorOptions::get_Attention(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveColorOption** attentionColorOption)
     {
-        return E_NOTIMPL;
+        return MakeAndInitialize<AdaptiveColorOption>(attentionColorOption, m_sharedColorOptions.attention);
     }
 
     _Use_decl_annotations_

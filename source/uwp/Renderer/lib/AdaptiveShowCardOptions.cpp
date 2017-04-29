@@ -42,7 +42,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveShowCardOptions::get_BackgroundColor(Color* value)
     {
-        return E_NOTIMPL;
+        return GetColorFromString(m_sharedShowCardOptions.backgroundColor, value);
     }
 
     _Use_decl_annotations_

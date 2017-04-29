@@ -12,6 +12,8 @@
 #include "XamlHelpers.h"
 #include "XamlStyleKeyGenerators.h"
 #include "AdaptiveHostOptions.h"
+#include "AdaptiveColorOptions.h"
+#include "AdaptiveColorOption.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
