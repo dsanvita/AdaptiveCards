@@ -133,7 +133,7 @@ HRESULT GenerateImagesProjection(
     return S_OK;
 } CATCH_RETURN;
 
-HRESULT GetColorFromString(std::string colorString, Color *color)
+HRESULT GetColorFromString(std::string colorString, Color *color) noexcept try
 {
     std::string alphaString = colorString.substr(1, 2);
     INT32 alpha = strtol(alphaString.c_str(), nullptr, 16);
@@ -153,4 +153,4 @@ HRESULT GetColorFromString(std::string colorString, Color *color)
     color->G = green;
 
     return S_OK;
-}
+} CATCH_RETURN;
