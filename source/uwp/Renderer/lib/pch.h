@@ -14,7 +14,6 @@
 
 #include <unordered_map>
 #include <set>
-
-#include "ErrorHandling.h"
-
 #include <ppltasks.h>
+#include "ErrorHandling.h"
+#include "Util.h"
