@@ -729,6 +729,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             break;
         }
 
+        /*
         ComPtr<IFontWeightsStatics> fontWeightsStatics = XamlHelpers::CreateXamlClass<IFontWeightsStatics>(HStringReference(RuntimeClass_Windows_UI_Text_FontWeights));
         ABI::Windows::UI::Text::FontWeight xamlFontWeight;
         switch (weight)
@@ -744,6 +745,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             break;
         }
         THROW_IF_FAILED(localTextBlock->put_FontWeight(xamlFontWeight));
+        */
     }
 
     _Use_decl_annotations_
