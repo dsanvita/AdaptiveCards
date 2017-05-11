@@ -205,6 +205,12 @@ namespace AdaptiveCards
             Email,
         } TextInputStyle;
 
+        [version(NTDDI_WIN10_RS1)]
+        typedef [v1_enum] enum ContainerStyle {
+            Normal = 0,
+            Emphasis
+        } ContainerStyle;
+
         declare
         {
             interface Windows.Foundation.Collections.IVector<IAdaptiveCardElement*>;
@@ -591,6 +597,9 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveContainer : IInspectable
         {
+            [propget] HRESULT Style([out, retval] ContainerStyle* value);
+            [propput] HRESULT Style([in] ContainerStyle value);
+
             [propget] HRESULT Items([out, retval] Windows.Foundation.Collections.IVector<IAdaptiveCardElement*>** value);
         };
 
@@ -612,6 +621,8 @@ namespace AdaptiveCards
         {
             [propget] HRESULT Size([out, retval] HSTRING* value);
             [propput] HRESULT Size([in] HSTRING value);
+
+            [propget] HRESULT Items([out, retval] Windows.Foundation.Collections.IVector<IAdaptiveCardElement*>** value);
         };
 
         [
@@ -621,7 +632,6 @@ namespace AdaptiveCards
         runtimeclass AdaptiveColumn
         {
             [default] interface IAdaptiveColumn;
-            interface IAdaptiveContainer;
             interface IAdaptiveCardElement;
         };
 

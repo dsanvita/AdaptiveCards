@@ -1013,6 +1013,27 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     }
 
     _Use_decl_annotations_
+    void XamlBuilder::BuildColumn(
+        IAdaptiveCardElement* adaptiveCardElement, 
+        IUIElement** ColumnControl)
+    {
+        ComPtr<IAdaptiveCardElement> cardElement(adaptiveCardElement);
+        ComPtr<IAdaptiveColumn> adaptiveColumn;
+        THROW_IF_FAILED(cardElement.As(&adaptiveColumn));
+
+        ComPtr<IStackPanel> xamlStackPanel = XamlHelpers::CreateXamlClass<IStackPanel>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_StackPanel));
+        xamlStackPanel->put_Orientation(Orientation::Orientation_Vertical);
+
+        ComPtr<IPanel> stackPanelAsPanel;
+        THROW_IF_FAILED(xamlStackPanel.As(&stackPanelAsPanel));
+        ComPtr<IVector<IAdaptiveCardElement*>> childItems;
+        THROW_IF_FAILED(adaptiveColumn->get_Items(&childItems));
+        BuildPanelChildren(childItems.Get(), stackPanelAsPanel.Get(), [](IUIElement*) {});
+
+        THROW_IF_FAILED(xamlStackPanel.CopyTo(ColumnControl));
+    }
+
+    _Use_decl_annotations_
     void XamlBuilder::BuildColumnSet(
         IAdaptiveCardElement* adaptiveCardElement,
         IUIElement** columnSetControl)
@@ -1095,9 +1116,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
             THROW_IF_FAILED(columnDefinition->put_Width(columnWidth));
             THROW_IF_FAILED(columnDefinitions->Append(columnDefinition.Get()));
 
-            // The column is a container, so build it
+            // Build the Column
             ComPtr<IUIElement> xamlColumn;
-            BuildContainer(columnAsCardElement.Get(), &xamlColumn);
+            BuildColumn(columnAsCardElement.Get(), &xamlColumn);
 
             // Mark the column container with the current column
             ComPtr<IFrameworkElement> columnAsFrameworkElement;

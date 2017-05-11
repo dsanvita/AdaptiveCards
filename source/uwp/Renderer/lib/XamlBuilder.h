@@ -26,7 +26,6 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         HRESULT SetFixedDimensions(_In_ UINT width, _In_ UINT height) noexcept;
         HRESULT SetRenderOptions(_In_ ABI::AdaptiveCards::XamlCardRenderer::RenderOptions renderOptions) noexcept;
         HRESULT SetEnableXamlImageHandling(_In_ bool enableXamlImageHandling) noexcept;
-        HRESULT SetBackgroundImageUri(_In_ ABI::Windows::Foundation::IUriRuntimeClass* imageUri) noexcept;
         HRESULT SetOverrideDictionary(_In_ ABI::Windows::UI::Xaml::IResourceDictionary* overrideDictionary) noexcept;
         HRESULT SetHostOptions(_In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveHostOptions* hostOptions) noexcept;
 
@@ -108,9 +107,12 @@ std::vector<Microsoft::WRL::ComPtr<ABI::Windows::Foundation::IAsyncOperationWith
         void BuildContainer(
             _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
             _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** containerControl);
-        void BuildColumnSet(
+        void BuildColumn(
             _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
             _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** columnControl);
+        void BuildColumnSet(
+            _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
+            _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** columnSetControl);
         void BuildFactSet(
             _In_ ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCardElement* adaptiveCardElement,
             _COM_Outptr_ ABI::Windows::UI::Xaml::IUIElement** factSetControl);

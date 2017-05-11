@@ -70,7 +70,8 @@ enum class AdaptiveCardSchemaKey
     Style,
     IsMultiSelect,
     IsRequired,
-    BackgroundImageUrl
+    BackgroundImageUrl,
+    Emphasis
 };
 
 enum class TextSize
@@ -176,6 +177,11 @@ enum class ActionMode {
     Popup
 };
 
+enum class ContainerStyle {
+    Normal = 0,
+    Emphasis
+};
+
 const std::string AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey type);
 AdaptiveCardSchemaKey AdaptiveCardSchemaKeyFromString(const std::string& type);
 
@@ -216,5 +222,8 @@ const std::string ChoiceSetStyleToString(ChoiceSetStyle type);
 ChoiceSetStyle ChoiceSetStyleFromString(const std::string& type);
 
 const std::string TextInputStyleToString(TextInputStyle style);
-TextInputStyle TextInputStyleFromString(const std::string & style);
+TextInputStyle TextInputStyleFromString(const std::string& style);
+
+const std::string ContainerStyleToString(ContainerStyle style);
+ContainerStyle ContainerStyleFromString(const std::string& style);
 }
