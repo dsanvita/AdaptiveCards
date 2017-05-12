@@ -124,7 +124,8 @@ struct ShowCardOptions
 {
     ActionMode actionMode = ActionMode::Inline;
     std::string backgroundColor = "#FFF8F8F8";
-    bool autoPadding = true;
+    unsigned int inlineTopMargin = 20;
+    BoundaryOptions padding = { 16, 16, 16, 16 };
 };
 
 struct ActionOptions

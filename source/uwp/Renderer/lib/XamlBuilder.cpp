@@ -625,6 +625,12 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         UINT32 maxActions;
         THROW_IF_FAILED(actionOptions->get_MaxActions(&maxActions));
 
+        ComPtr<IAdaptiveShowCardOptions> showCardOptions;
+        THROW_IF_FAILED(actionOptions->get_ShowCard(&showCardOptions));
+
+        ABI::AdaptiveCards::XamlCardRenderer::ActionMode showCardActionMode;
+        THROW_IF_FAILED(showCardOptions->get_ActionMode(&showCardActionMode));
+
         // Add the action buttons to the stack panel
         ComPtr<IPanel> actionsPanel;
         THROW_IF_FAILED(actionStackPanel.As(&actionsPanel));
@@ -654,9 +660,10 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                 ABI::AdaptiveCards::XamlCardRenderer::ActionType actionType;
                 THROW_IF_FAILED(action->get_ActionType(&actionType));
 
-                // If this is a show card action, render the card that will be shown
+                // If this is a show card action and we're rendering the actions inline, render the card that will be shown
                 ComPtr<IUIElement> uiShowCard;
-                if (actionType == ABI::AdaptiveCards::XamlCardRenderer::ActionType::ShowCard)
+                if (actionType == ABI::AdaptiveCards::XamlCardRenderer::ActionType::ShowCard && 
+                    showCardActionMode == ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Inline)
                 {
                     ComPtr<IAdaptiveShowCardAction> showCardAction;
                     THROW_IF_FAILED(action.As(&showCardAction));
@@ -680,27 +687,30 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                 THROW_IF_FAILED(button.As(&buttonBase));
 
                 EventRegistrationToken clickToken;
-                THROW_IF_FAILED(buttonBase->add_Click(Callback<IRoutedEventHandler>([actionType, uiShowCard, allShowCards, strongRenderer](IInspectable* sender, IRoutedEventArgs* args) -> HRESULT
+                THROW_IF_FAILED(buttonBase->add_Click(Callback<IRoutedEventHandler>([actionType, showCardActionMode, uiShowCard, allShowCards, strongRenderer](IInspectable* sender, IRoutedEventArgs* args) -> HRESULT
                 {
                     switch (actionType)
                     {
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::ShowCard:
                         {
-                            // TODO: Handle non-inline show cards
-                            // Check if this show card is currently visible
-                            Visibility currentVisibility;
-                            THROW_IF_FAILED(uiShowCard->get_Visibility(&currentVisibility));
-
-                            // Collapse all cards to make sure that no other show cards are visible
-                            for (std::vector<ComPtr<IUIElement>>::iterator it = allShowCards->begin(); it != allShowCards->end(); ++it)
+                            if (showCardActionMode == ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Inline)
                             {
-                                THROW_IF_FAILED((*it)->put_Visibility(Visibility_Collapsed));
-                            }
+                                // TODO: Handle non-inline show cards
+                                // Check if this show card is currently visible
+                                Visibility currentVisibility;
+                                THROW_IF_FAILED(uiShowCard->get_Visibility(&currentVisibility));
 
-                            // If the card had been collapsed before, show it now
-                            if (currentVisibility == Visibility_Collapsed)
-                            {
-                                THROW_IF_FAILED(uiShowCard->put_Visibility(Visibility_Visible));
+                                // Collapse all cards to make sure that no other show cards are visible
+                                for (std::vector<ComPtr<IUIElement>>::iterator it = allShowCards->begin(); it != allShowCards->end(); ++it)
+                                {
+                                    THROW_IF_FAILED((*it)->put_Visibility(Visibility_Collapsed));
+                                }
+
+                                // If the card had been collapsed before, show it now
+                                if (currentVisibility == Visibility_Collapsed)
+                                {
+                                    THROW_IF_FAILED(uiShowCard->put_Visibility(Visibility_Visible));
+                                }
                             }
                             break;
                         }
