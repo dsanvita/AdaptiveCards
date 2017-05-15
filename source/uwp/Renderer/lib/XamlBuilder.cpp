@@ -3,11 +3,8 @@
 #include "AdaptiveColorOptions.h"
 #include "AdaptiveColorOption.h"
 #include "AdaptiveHostOptions.h"
-#include "AdaptiveHttpActionEventArgs.h"
-#include "AdaptiveOpenUrlActionEventArgs.h"
 #include "AdaptiveImage.h"
-#include "AdaptiveShowCardActionEventArgs.h"
-#include "AdaptiveSubmitActionEventArgs.h"
+#include "AdaptiveActionEventArgs.h"
 #include "DefaultResourceDictionary.h"
 #include <windows.foundation.collections.h>
 #include <windows.storage.h>
@@ -722,32 +719,18 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
                                 // TODO: populate event args for ShowCard
                                 ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveShowCardActionEventArgs>(&eventArgs));
+                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, nullptr));
                                 THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
                             }
                             break;
                         }
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::Http:
-                        {
-                            // TODO: populate event args for Http
-                            ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveHttpActionEventArgs>(&eventArgs));
-                            THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
-                            break;
-                        }
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::OpenUrl:
-                        {
-                            // TODO: populate event args for OpenUrl
-                            ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveOpenUrlActionEventArgs>(&eventArgs));
-                            THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
-                            break;
-                        }
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::Submit:
                         {
-                            // TODO: populate event args for Submit
+                            // TODO: populate event args for Http, OpenUrl, and Submit
                             ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveSubmitActionEventArgs>(&eventArgs));
+                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, nullptr));
                             THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
                             break;
                         }

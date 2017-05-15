@@ -51,10 +51,7 @@ namespace AdaptiveCards
         runtimeclass AdaptiveTextInputOptions;
         runtimeclass AdaptiveChoiceSetInputOptions;
         runtimeclass AdaptiveHostOptions;
-        runtimeclass AdaptiveHttpActionEventArgs;
-        runtimeclass AdaptiveOpenUrlActionEventArgs;
-        runtimeclass AdaptiveShowCardActionEventArgs;
-        runtimeclass AdaptiveSubmitActionEventArgs;
+        runtimeclass AdaptiveActionEventArgs;
 
         interface IAdaptiveCardElement;
         interface IAdaptiveActionElement;
@@ -746,7 +743,7 @@ namespace AdaptiveCards
             HRESULT RenderAdaptiveJsonAsXaml([in] HSTRING adaptiveJson, [out, retval] Windows.UI.Xaml.UIElement** result);
             HRESULT RenderAdaptiveJsonAsXamlAsync([in] HSTRING adaptiveJson, [out, retval] Windows.Foundation.IAsyncOperation<Windows.UI.Xaml.UIElement*>** result);
 
-            [eventadd] HRESULT Action([in] Windows.Foundation.TypedEventHandler<XamlCardRenderer*, IAdaptiveActionEventArgs*>* pHandler, [out][retval] EventRegistrationToken* pToken);
+            [eventadd] HRESULT Action([in] Windows.Foundation.TypedEventHandler<XamlCardRenderer*, AdaptiveActionEventArgs*>* pHandler, [out][retval] EventRegistrationToken* pToken);
             [eventremove] HRESULT Action([in] EventRegistrationToken token);
         };
 
@@ -762,87 +759,20 @@ namespace AdaptiveCards
         [
             uuid(6853cff8-60ee-4270-9cd2-23b25cd8703f),
             version(NTDDI_WIN10_RS1),
+            exclusiveto(AdaptiveActionEventArgs)
         ]
         interface IAdaptiveActionEventArgs : IInspectable
         {
             [propget] HRESULT ActionType([out, retval] ActionType* value);
-        }
-
-        [
-            uuid(c06e6789-46a2-40f2-af5b-e06945cd2688),
-            version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveHttpActionEventArgs),
-        ]
-        interface IAdaptiveHttpActionEventArgs : IInspectable
-        {
+            [propget] HRESULT Action([out, retval] IAdaptiveActionElement** action);
         }
 
         [
             version(NTDDI_WIN10_RS1),
-            activatable(NTDDI_WIN10_RS1),
         ]
-        runtimeclass AdaptiveHttpActionEventArgs
+        runtimeclass AdaptiveActionEventArgs
         {
-            [default] interface IAdaptiveHttpActionEventArgs;
-            interface IAdaptiveActionEventArgs;
-        };
-
-        [
-            uuid(2084de4a-91a2-42d6-b36a-6163a789dd11),
-            version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveOpenUrlActionEventArgs),
-        ]
-        interface IAdaptiveOpenUrlActionEventArgs : IInspectable
-        {
-        }
-
-        [
-            version(NTDDI_WIN10_RS1),
-            activatable(NTDDI_WIN10_RS1),
-        ]
-        runtimeclass AdaptiveOpenUrlActionEventArgs
-        {
-            [default] interface IAdaptiveOpenUrlActionEventArgs;
-            interface IAdaptiveActionEventArgs;
-        };
-
-        [
-            uuid(786f30cc-bd27-40d4-952c-ea22df6bb198),
-            version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveShowCardActionEventArgs),
-        ]
-        interface IAdaptiveShowCardActionEventArgs : IInspectable
-        {
-            [propget] HRESULT Card([out, retval] AdaptiveCard** value);
-        }
-
-        [
-            version(NTDDI_WIN10_RS1),
-            activatable(NTDDI_WIN10_RS1),
-        ]
-        runtimeclass AdaptiveShowCardActionEventArgs
-        {
-            [default] interface IAdaptiveShowCardActionEventArgs;
-            interface IAdaptiveActionEventArgs;
-        };
-
-        [
-            uuid(9f133572-c20c-41b7-baf8-dc954012e844),
-            version(NTDDI_WIN10_RS1),
-            exclusiveto(AdaptiveSubmitActionEventArgs),
-        ]
-        interface IAdaptiveSubmitActionEventArgs : IInspectable
-        {
-        }
-
-        [
-            version(NTDDI_WIN10_RS1),
-            activatable(NTDDI_WIN10_RS1),
-        ]
-        runtimeclass AdaptiveSubmitActionEventArgs
-        {
-            [default] interface IAdaptiveSubmitActionEventArgs;
-            interface IAdaptiveActionEventArgs;
+            [default] interface IAdaptiveActionEventArgs;
         };
 
         [
