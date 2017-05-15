@@ -712,14 +712,8 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                             }
                             else
                             {
-                                ComPtr<IAdaptiveShowCardAction> showCardAction;
-                                THROW_IF_FAILED(action.As(&showCardAction));
-
-                                //showCardAction->get_Card(&cardToShow)
-
-                                // TODO: populate event args for ShowCard
                                 ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, nullptr));
+                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, action.Get()));
                                 THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
                             }
                             break;
@@ -730,7 +724,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                         {
                             // TODO: populate event args for Http, OpenUrl, and Submit
                             ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, nullptr));
+                            THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, actionType, action.Get()));
                             THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
                             break;
                         }

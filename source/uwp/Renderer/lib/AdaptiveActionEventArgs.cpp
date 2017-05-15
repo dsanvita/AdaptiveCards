@@ -31,6 +31,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
     _Use_decl_annotations_
     HRESULT AdaptiveActionEventArgs::get_Action(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveActionElement** action)
     {
-        return E_NOTIMPL;
+        *action = m_action.Get();
+        return S_OK;
     }
 }}
