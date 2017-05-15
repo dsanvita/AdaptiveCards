@@ -661,7 +661,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                 // If this is a show card action and we're rendering the actions inline, render the card that will be shown
                 ComPtr<IUIElement> uiShowCard;
                 if (actionType == ABI::AdaptiveCards::XamlCardRenderer::ActionType::ShowCard && 
-                    showCardActionMode == ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Inline)
+                    showCardActionMode != ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Popup)
                 {
                     ComPtr<IAdaptiveShowCardAction> showCardAction;
                     THROW_IF_FAILED(action.As(&showCardAction));
@@ -671,6 +671,27 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
                     BuildXamlTreeFromAdaptiveCard(showCard.Get(), uiShowCard.GetAddressOf(), strongRenderer.Get(), false);
 
+                    ComPtr<IFrameworkElement> showCardFrameworkElement;
+                    THROW_IF_FAILED(uiShowCard.As(&showCardFrameworkElement));
+
+                    // Set the padding from the show card options
+                    ComPtr<IAdaptiveBoundaryOptions> cardPadding;
+                    THROW_IF_FAILED(showCardOptions->get_Padding(&cardPadding));
+                    //ApplyMarginToXamlElement(cardPadding.Get(), showCardFrameworkElement.Get());
+
+                    // Set the background color from the show card options
+                    Color backgroundColor;
+                    THROW_IF_FAILED(showCardOptions->get_BackgroundColor(&backgroundColor));
+                    ComPtr<ISolidColorBrush> solidColorBrush = XamlHelpers::CreateXamlClass<ISolidColorBrush>(HStringReference(RuntimeClass_Windows_UI_Xaml_Media_SolidColorBrush));
+                    THROW_IF_FAILED(solidColorBrush->put_Color(backgroundColor));
+                    ComPtr<IBrush> asBrush;
+                    THROW_IF_FAILED(solidColorBrush.As(&asBrush));
+
+                    ComPtr<IPanel> showCardAsPanel;
+                    THROW_IF_FAILED(uiShowCard.As(&showCardAsPanel));
+                    THROW_IF_FAILED(showCardAsPanel->put_Background(asBrush.Get()));
+
+                    // Set the visibility as Collapsed until the action is triggered
                     THROW_IF_FAILED(uiShowCard->put_Visibility(Visibility_Collapsed));
 
                     allShowCards->push_back(uiShowCard);
@@ -691,9 +712,14 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                     {
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::ShowCard:
                         {
-                            if (showCardActionMode == ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Inline)
+                            if (showCardActionMode == ABI::AdaptiveCards::XamlCardRenderer::ActionMode_Popup)
                             {
-                                // TODO: Handle non-inline show cards
+                                ComPtr<IAdaptiveActionEventArgs> eventArgs;
+                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, action.Get()));
+                                THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
+                            }
+                            else
+                            {
                                 // Check if this show card is currently visible
                                 Visibility currentVisibility;
                                 THROW_IF_FAILED(uiShowCard->get_Visibility(&currentVisibility));
@@ -710,19 +736,13 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                                     THROW_IF_FAILED(uiShowCard->put_Visibility(Visibility_Visible));
                                 }
                             }
-                            else
-                            {
-                                ComPtr<IAdaptiveActionEventArgs> eventArgs;
-                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, action.Get()));
-                                THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
-                            }
                             break;
                         }
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::Http:
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::OpenUrl:
                         case ABI::AdaptiveCards::XamlCardRenderer::ActionType::Submit:
                         {
-                            // TODO: populate event args for Http, OpenUrl, and Submit
+                            // TODO: populate event args with values from inputs for Http, OpenUrl, and Submit
                             ComPtr<IAdaptiveActionEventArgs> eventArgs;
                             THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveActionEventArgs>(&eventArgs, action.Get()));
                             THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));

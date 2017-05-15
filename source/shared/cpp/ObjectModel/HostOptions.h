@@ -122,7 +122,7 @@ struct FactSetOptions
 
 struct ShowCardOptions
 {
-    ActionMode actionMode = ActionMode::Inline;
+    ActionMode actionMode = ActionMode::InlineEdgeToEdge;
     std::string backgroundColor = "#FFF8F8F8";
     unsigned int inlineTopMargin = 20;
     BoundaryOptions padding = { 16, 16, 16, 16 };
