@@ -6,6 +6,7 @@
 #include "AdaptiveHttpActionEventArgs.h"
 #include "AdaptiveOpenUrlActionEventArgs.h"
 #include "AdaptiveImage.h"
+#include "AdaptiveShowCardActionEventArgs.h"
 #include "AdaptiveSubmitActionEventArgs.h"
 #include "DefaultResourceDictionary.h"
 #include <windows.foundation.collections.h>
@@ -711,6 +712,13 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                                 {
                                     THROW_IF_FAILED(uiShowCard->put_Visibility(Visibility_Visible));
                                 }
+                            }
+                            else
+                            {
+                                // TODO: populate event args for ShowCard
+                                ComPtr<IAdaptiveActionEventArgs> eventArgs;
+                                THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveShowCardActionEventArgs>(&eventArgs));
+                                THROW_IF_FAILED(strongRenderer->SendActionEvent(eventArgs.Get()));
                             }
                             break;
                         }

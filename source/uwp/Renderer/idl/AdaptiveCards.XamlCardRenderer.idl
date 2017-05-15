@@ -53,6 +53,7 @@ namespace AdaptiveCards
         runtimeclass AdaptiveHostOptions;
         runtimeclass AdaptiveHttpActionEventArgs;
         runtimeclass AdaptiveOpenUrlActionEventArgs;
+        runtimeclass AdaptiveShowCardActionEventArgs;
         runtimeclass AdaptiveSubmitActionEventArgs;
 
         interface IAdaptiveCardElement;
@@ -806,6 +807,25 @@ namespace AdaptiveCards
         };
 
         [
+            uuid(786f30cc-bd27-40d4-952c-ea22df6bb198),
+            version(NTDDI_WIN10_RS1),
+            exclusiveto(AdaptiveShowCardActionEventArgs),
+        ]
+        interface IAdaptiveShowCardActionEventArgs : IInspectable
+        {
+        }
+
+        [
+            version(NTDDI_WIN10_RS1),
+            activatable(NTDDI_WIN10_RS1),
+        ]
+        runtimeclass AdaptiveShowCardActionEventArgs
+        {
+            [default] interface IAdaptiveShowCardActionEventArgs;
+            interface IAdaptiveActionEventArgs;
+        };
+
+        [
             uuid(9f133572-c20c-41b7-baf8-dc954012e844),
             version(NTDDI_WIN10_RS1),
             exclusiveto(AdaptiveSubmitActionEventArgs),
@@ -1227,8 +1247,11 @@ namespace AdaptiveCards
             [propget] HRESULT BackgroundColor([out][retval] Windows.UI.Color* value);
             [propput] HRESULT BackgroundColor([in] Windows.UI.Color value);
 
-            [propget] HRESULT AutoPadding([out, retval] boolean* value);
-            [propput] HRESULT AutoPadding([in] boolean value);
+            [propget] HRESULT Padding([out, retval] AdaptiveBoundaryOptions** value);
+            [propput] HRESULT Padding([in] AdaptiveBoundaryOptions* value);
+
+            [propget] HRESULT InlineTopMargin([out, retval] UINT32 *value);
+            [propput] HRESULT InlineTopMargin([in] UINT32 value);
         };
 
         [

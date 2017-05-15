@@ -152,6 +152,7 @@
     <ClInclude Include="lib\AdaptiveOpenUrlActionEventArgs.h" />
     <ClInclude Include="lib\AdaptiveSeparationOptions.h" />
     <ClInclude Include="lib\AdaptiveShowCardAction.h" />
+    <ClInclude Include="lib\AdaptiveShowCardActionEventArgs.h" />
     <ClInclude Include="lib\AdaptiveShowCardOptions.h" />
     <ClInclude Include="lib\AdaptiveSubmitAction.h" />
     <ClInclude Include="lib\AdaptiveSubmitActionEventArgs.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="lib\AdaptiveOpenUrlActionEventArgs.cpp" />
     <ClCompile Include="lib\AdaptiveSeparationOptions.cpp" />
     <ClCompile Include="lib\AdaptiveShowCardAction.cpp" />
+    <ClCompile Include="lib\AdaptiveShowCardActionEventArgs.cpp" />
     <ClCompile Include="lib\AdaptiveShowCardOptions.cpp" />
     <ClCompile Include="lib\AdaptiveSubmitAction.cpp" />
     <ClCompile Include="lib\AdaptiveSubmitActionEventArgs.cpp" />
