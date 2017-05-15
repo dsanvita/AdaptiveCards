@@ -13,7 +13,12 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
     public:
         HRESULT RuntimeClassInitialize();
+
+        // IAdaptiveActionEventArgs
         IFACEMETHODIMP get_ActionType(_Out_ ABI::AdaptiveCards::XamlCardRenderer::ActionType* actionType);
+
+        // IAdaptiveShowCardActionEventArgs
+        IFACEMETHODIMP get_Card(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCard ** card);
     };
 
     ActivatableClass(AdaptiveShowCardActionEventArgs);

@@ -688,7 +688,7 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                 THROW_IF_FAILED(button.As(&buttonBase));
 
                 EventRegistrationToken clickToken;
-                THROW_IF_FAILED(buttonBase->add_Click(Callback<IRoutedEventHandler>([actionType, showCardActionMode, uiShowCard, allShowCards, strongRenderer](IInspectable* sender, IRoutedEventArgs* args) -> HRESULT
+                THROW_IF_FAILED(buttonBase->add_Click(Callback<IRoutedEventHandler>([action, actionType, showCardActionMode, uiShowCard, allShowCards, strongRenderer](IInspectable* sender, IRoutedEventArgs* args) -> HRESULT
                 {
                     switch (actionType)
                     {
@@ -715,6 +715,11 @@ namespace AdaptiveCards { namespace XamlCardRenderer
                             }
                             else
                             {
+                                ComPtr<IAdaptiveShowCardAction> showCardAction;
+                                THROW_IF_FAILED(action.As(&showCardAction));
+
+                                //showCardAction->get_Card(&cardToShow)
+
                                 // TODO: populate event args for ShowCard
                                 ComPtr<IAdaptiveActionEventArgs> eventArgs;
                                 THROW_IF_FAILED(MakeAndInitialize<AdaptiveCards::XamlCardRenderer::AdaptiveShowCardActionEventArgs>(&eventArgs));

@@ -16,4 +16,9 @@ namespace AdaptiveCards { namespace XamlCardRenderer
         *actionType = ActionType_ShowCard;
         return S_OK;
     }
+
+    HRESULT AdaptiveShowCardActionEventArgs::get_Card(ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveCard** card)
+    {
+        return E_NOTIMPL;
+    }
 }}
