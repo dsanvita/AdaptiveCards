@@ -12,19 +12,10 @@ namespace AdaptiveCards { namespace XamlCardRenderer
 
     _Use_decl_annotations_
     HRESULT AdaptiveActionEventArgs::RuntimeClassInitialize(
-        ABI::AdaptiveCards::XamlCardRenderer::ActionType actionType, 
         ABI::AdaptiveCards::XamlCardRenderer::IAdaptiveActionElement* action)
     {
-        m_actionType = actionType;
         m_action = action;
 
-        return S_OK;
-    }
-
-    _Use_decl_annotations_
-    HRESULT AdaptiveActionEventArgs::get_ActionType(ABI::AdaptiveCards::XamlCardRenderer::ActionType* actionType)
-    {
-        *actionType = m_actionType;
         return S_OK;
     }
 

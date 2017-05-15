@@ -73,14 +73,14 @@ namespace XamlCardVisualizer
 
                 m_actionDialog = new ContentDialog();
 
-                if (e.ActionType == ActionType.ShowCard)
+                if (e.Action.ActionType == ActionType.ShowCard)
                 {
                     AdaptiveShowCardAction showCardAction = (AdaptiveShowCardAction)e.Action;
                     m_actionDialog.Content = await m_renderer.RenderCardAsXamlAsync(showCardAction.Card);
                 }
                 else
                 {
-                    m_actionDialog.Content = "We got an action!\n" + e.ActionType;
+                    m_actionDialog.Content = "We got an action!\n" + e.Action.ActionType;
                 }
 
                 m_actionDialog.PrimaryButtonText = "Close";

@@ -763,7 +763,6 @@ namespace AdaptiveCards
         ]
         interface IAdaptiveActionEventArgs : IInspectable
         {
-            [propget] HRESULT ActionType([out, retval] ActionType* value);
             [propget] HRESULT Action([out, retval] IAdaptiveActionElement** action);
         }
 
